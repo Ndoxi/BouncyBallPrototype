@@ -44,4 +44,13 @@ public class BallPhysic : MonoBehaviour
             _isGrounded = false;
         }
     }
+
+
+    /// <summary>
+    /// Launch ball wiht given force (ForceMode = Impulse)
+    /// </summary>
+    public void Launch(Vector2 force)
+    {
+        _rigidbody.AddForce(force, ForceMode2D.Impulse);
+    }
 }
