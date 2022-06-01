@@ -6,11 +6,16 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
+    public delegate void TouchHoldStarted(Vector2 touchStartPosition);
+    public static event TouchHoldStarted TouchHoldStartedEvent;
+
+    public delegate void TouchHoldEnded();
+    public static event TouchHoldEnded TouchHoldEndedEvent;
+
+
     private Vector2 _touchStartPosition;
-    private InputActionPhase _touchPhase;
 
     public Vector2 TouchStartPosition { get { return _touchStartPosition; } }
-    public InputActionPhase TouchPhase { get { return _touchPhase; } }
 
 
     public void OnTouch(InputAction.CallbackContext context)
@@ -18,14 +23,24 @@ public class InputHandler : MonoBehaviour
         if (context.performed == false) { return; }
 
         _touchStartPosition = context.ReadValue<Vector2>();
-
-        Debug.Log(_touchStartPosition);
     }
 
 
     public void OnTouchHold(InputAction.CallbackContext context)
     {
-        _touchPhase = context.phase;
-        Debug.Log(context.phase);
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                {
+                    TouchHoldStartedEvent?.Invoke(_touchStartPosition);
+                    break;
+                }
+
+            default:
+                {
+                    TouchHoldEndedEvent?.Invoke();
+                    break;
+                }
+        }
     }
 }

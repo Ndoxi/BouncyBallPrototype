@@ -40,7 +40,7 @@
                     "name": "",
                     "id": "e1463ac9-0165-4bfd-bbdc-37c09fccf8d1",
                     "path": "<Touchscreen>/touch0/press",
-                    "interactions": "Hold(duration=1.25)",
+                    "interactions": "Hold(duration=1.5)",
                     "processors": "",
                     "groups": "",
                     "action": "TouchHold",
