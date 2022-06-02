@@ -43,7 +43,7 @@ public class BallPhysic : MonoBehaviour
     {
         _isTouchingGround = Physics2D.OverlapCircle(_circleCollider.bounds.center, _circleCollider.radius, _groundLayer);
 
-        if (_rigidbody.velocity.magnitude <= 0.25f && _isTouchingGround)
+        if (_isTouchingGround) //_rigidbody.velocity.magnitude <= 0.25f && 
         {
             if (_isGrounded == false)
             {
